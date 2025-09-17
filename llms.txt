@@ -1,0 +1,4 @@
+## Pages
+- [Login - Mitra Bukalapak](/login): Masuk ke akun Mitra Bukalapak Anda untuk mengelola bisnis online
+- [Login Error - Mitra Bukalapak](/error): Terjadi masalah saat login ke akun Mitra Bukalapak.
+- [Verifikasi OTP - Mitra Bukalapak](/otp): Masukkan kode OTP untuk verifikasi akun Mitra Bukalapak
