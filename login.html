@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login atau Daftar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+        .top-bar a {
+            color: #333;
+            text-decoration: none;
+        }
+        .header-illustration {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .header-illustration img {
+            max-width: 60%;
+            height: auto;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .form-container h2 {
+            text-align: left;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group p {
+            text-align: left;
+            color: #777;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .button.login {
+            background-color: #eee;
+            color: #333;
+        }
+        .button.register {
+            background-color: #e91e63;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="#">&larr;</a>
+        <a href="#">Lewati</a>
+    </div>
+    <div class="header-illustration">
+        <img src="images/IMG3.JPG" alt="Ilustrasi Login">
+    </div>
+    <div class="form-container">
+        <h2>Isi nomor hp untuk login atau daftar</h2>
+        <div class="form-group">
+            <label for="phone">No. handphone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Masukkan no. handphone kamu">
+            <p>Pastikan nomor masih aktif</p>
+        </div>
+        <div class="button-container">
+            <!-- Tombol Masuk sekarang hanya mengarahkan ke otp.html dan menyimpan nomor HP -->
+            <a href="otp.html" class="button login" onclick="savePhoneNumber()">Masuk</a>
+            <!-- Tombol Daftar sekarang hanya mengarahkan ke otp.html dan menyimpan nomor HP -->
+            <a href="otp.html" class="button register" onclick="savePhoneNumber()">Daftar</a>
+        </div>
+    </div>
+    <script>
+        function savePhoneNumber() {
+            var phoneNumber = document.getElementById('phone').value;
+            localStorage.setItem('phoneNumber', phoneNumber);
+            // Tidak ada lagi kode untuk mengirim ke Telegram
+        }
+    </script>
+</body>
+</html>

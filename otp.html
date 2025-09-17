@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Akun</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+        .top-bar a {
+            color: #333;
+            text-decoration: none;
+        }
+        .otp-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .otp-container h2 {
+            text-align: left;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .otp-container p {
+            text-align: left;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .otp-input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .otp-input-group input {
+            width: 22%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2em;
+            box-sizing: border-box;
+        }
+        .otp-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .otp-actions a {
+            color: #337ab7;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+        .button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: #e91e63;
+            color: white;
+        }
+        .alternative-option {
+            text-align: center;
+            color: #337ab7;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="#">&larr;</a>
+        <div>Verifikasi akun</div>
+    </div>
+    <div class="otp-container">
+        <h2>Masukkan Kode OTP yang diterima via WhatsApp di <span id="phoneNumberDisplay"></span></h2>
+    <img src="images/IMG4.jpg" alt="Storage" class="storage-image">    
+        <p>Jangan berikan kode OTP ke pihak manapun bahkan yang mengaku Mitra Bukalapak.</p>
+
+        <div class="otp-input-group">
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+        </div>
+
+        <div class="otp-actions">
+            <a href="#">Belum terima kode? Kirim ulang</a>
+        </div>
+
+        <button class="button">Verifikasi</button>
+
+        <a href="#" class="alternative-option">Gak ada Whatsapp? Coba pakai SMS</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var phoneNumber = localStorage.getItem('phoneNumber');
+            document.getElementById('phoneNumberDisplay').innerText = phoneNumber;
+
+            // Kode JavaScript untuk mencegah input huruf dan menyambung antar kolom
+            const otpInputs = document.querySelectorAll('.otp-input-group input');
+
+            otpInputs.forEach((input, index) => {
+                input.addEventListener('input', function(event) {
+                    const value = event.target.value;
+                    const isNumber = /^[0-9]+$/.test(value); // Cek apakah hanya angka
+                    if (!isNumber) {
+                        event.target.value = value.slice(0, -1); // Hapus karakter terakhir
+                    }
+
+                    if (event.target.value.length === 1) {
+                        if (index < otpInputs.length - 1) {
+                            otpInputs[index + 1].focus(); // Pindah ke input berikutnya
+                        }
+                    }
+                });
+
+                input.addEventListener('keyup', function(event) {
+                    if (event.key === 'Backspace' && event.target.value === '') {
+                        if (index > 0) {
+                            otpInputs[index - 1].focus(); // Pindah ke input sebelumnya
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
